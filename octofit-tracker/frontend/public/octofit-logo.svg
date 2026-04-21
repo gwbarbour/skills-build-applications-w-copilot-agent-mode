@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <!-- Background circle -->
+  <circle cx="100" cy="100" r="95" fill="#667eea" opacity="0.1" stroke="#667eea" stroke-width="2"/>
+  
+  <!-- Octopus body -->
+  <circle cx="100" cy="70" r="35" fill="#667eea"/>
+  
+  <!-- Octopus eyes -->
+  <circle cx="90" cy="60" r="6" fill="white"/>
+  <circle cx="110" cy="60" r="6" fill="white"/>
+  <circle cx="90" cy="60" r="3" fill="#333"/>
+  <circle cx="110" cy="60" r="3" fill="#333"/>
+  
+  <!-- Octopus tentacles (wavy paths) -->
+  <path d="M 75 95 Q 70 120 72 150" stroke="#667eea" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <path d="M 85 100 Q 80 130 85 160" stroke="#667eea" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <path d="M 100 105 Q 98 135 100 165" stroke="#667eea" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <path d="M 115 100 Q 120 130 115 160" stroke="#667eea" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <path d="M 125 95 Q 130 120 128 150" stroke="#667eea" stroke-width="6" fill="none" stroke-linecap="round"/>
+  
+  <!-- Suction cups on tentacles -->
+  <circle cx="72" cy="135" r="3" fill="#764ba2" opacity="0.6"/>
+  <circle cx="72" cy="150" r="3" fill="#764ba2" opacity="0.6"/>
+  <circle cx="86" cy="145" r="3" fill="#764ba2" opacity="0.6"/>
+  <circle cx="86" cy="160" r="3" fill="#764ba2" opacity="0.6"/>
+  <circle cx="100" cy="150" r="3" fill="#764ba2" opacity="0.6"/>
+  <circle cx="100" cy="165" r="3" fill="#764ba2" opacity="0.6"/>
+  <circle cx="114" cy="145" r="3" fill="#764ba2" opacity="0.6"/>
+  <circle cx="114" cy="160" r="3" fill="#764ba2" opacity="0.6"/>
+  <circle cx="128" cy="135" r="3" fill="#764ba2" opacity="0.6"/>
+  <circle cx="128" cy="150" r="3" fill="#764ba2" opacity="0.6"/>
+  
+  <!-- Dumbbell accent (fitness element) -->
+  <circle cx="40" cy="40" r="5" fill="#f39c12"/>
+  <rect x="45" y="37" width="12" height="6" fill="#f39c12"/>
+  <circle cx="60" cy="40" r="5" fill="#f39c12"/>
+  
+  <!-- Star accent (achievement) -->
+  <path d="M 155,35 L 160,48 L 174,48 L 163,57 L 168,70 L 155,61 L 142,70 L 147,57 L 136,48 L 150,48 Z" fill="#e74c3c"/>
+</svg>
