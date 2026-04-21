@@ -1,8 +1,9 @@
 {
   "version": "0.2.0",
   "configurations": [
+    
     {
-      "name": "Launch Django Backend",
+         path('', views.api_root, name='api-root'),  # Add this line   "name": "Launch Django Backend",
       "type": "python",
       "request": "launch",
       "program": "${workspaceFolder}/octofit-tracker/backend/manage.py",
