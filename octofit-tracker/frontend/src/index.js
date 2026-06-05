@@ -4,6 +4,10 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { getApiBaseUrl } from './utils/api';
+
+console.log('REACT_APP_CODESPACE_NAME=', process.env.REACT_APP_CODESPACE_NAME);
+console.log('Frontend will use API base URL:', getApiBaseUrl());
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

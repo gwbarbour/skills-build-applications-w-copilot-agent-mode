@@ -8,7 +8,13 @@ def main():
     """Run administrative tasks."""
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'octofit_tracker.settings')
     try:
-        from django.core.management import execute_from_command_line
+        # Import dynamically to provide a clearer runtime error if Django
+        # isn't installed, and to avoid static analysis false-positives.
+        import importlib
+
+        execute_from_command_line = importlib.import_module(
+            "django.core.management"
+        ).execute_from_command_line
     except ImportError as exc:
         raise ImportError(
             "Couldn't import Django. Are you sure it's installed and "

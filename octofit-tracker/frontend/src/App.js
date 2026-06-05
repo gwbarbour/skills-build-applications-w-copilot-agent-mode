@@ -22,7 +22,7 @@ function Home() {
             <div className="card-body">
               <h5 className="card-title">📊 Activities</h5>
               <p className="card-text">Log and track your fitness activities</p>
-              <a href="/activities" className="btn btn-primary btn-sm">View Activities</a>
+              <Link to="/activities" className="btn btn-primary btn-sm">View Activities</Link>
             </div>
           </div>
         </div>
@@ -31,7 +31,7 @@ function Home() {
             <div className="card-body">
               <h5 className="card-title">💪 Workouts</h5>
               <p className="card-text">Manage your workout routines</p>
-              <a href="/workouts" className="btn btn-primary btn-sm">View Workouts</a>
+              <Link to="/workouts" className="btn btn-primary btn-sm">View Workouts</Link>
             </div>
           </div>
         </div>
@@ -40,7 +40,7 @@ function Home() {
             <div className="card-body">
               <h5 className="card-title">👥 Teams</h5>
               <p className="card-text">Create and join teams</p>
-              <a href="/teams" className="btn btn-primary btn-sm">View Teams</a>
+              <Link to="/teams" className="btn btn-primary btn-sm">View Teams</Link>
             </div>
           </div>
         </div>
@@ -49,7 +49,7 @@ function Home() {
             <div className="card-body">
               <h5 className="card-title">🏆 Leaderboard</h5>
               <p className="card-text">See the rankings</p>
-              <a href="/leaderboard" className="btn btn-primary btn-sm">View Rankings</a>
+              <Link to="/leaderboard" className="btn btn-primary btn-sm">View Rankings</Link>
             </div>
           </div>
         </div>
