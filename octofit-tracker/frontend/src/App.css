@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  background: linear-gradient(135deg, #eef2ff 0%, #f6f9ff 40%, #e9f7ef 100%);
 }
 
 main {
@@ -32,10 +32,28 @@ main {
   font-size: 1.5rem;
   font-weight: bold;
   letter-spacing: 0.5px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #4fb3ff 0%, #6b49ff 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+/* Small logo to the left */
+.navbar-small-logo {
+  height: 34px;
+  width: 34px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+}
+
+.navbar-logo {
+  height: 42px;
+  width: 42px;
+}
+
+/* Link color stronger */
+a {
+  color: #2e86ff;
 }
 
 .navbar {
@@ -62,7 +80,7 @@ main {
 }
 
 .nav-link:hover {
-  color: #f39c12 !important;
+  color: #ffd166 !important;
 }
 
 .nav-link:hover::after {
@@ -110,7 +128,7 @@ h3 {
 
 /* ==================== TEXT & TYPOGRAPHY ==================== */
 body {
-  color: #2c3e50;
+  color: #172554;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -133,17 +151,17 @@ p {
 }
 
 .table thead {
-  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(90deg, #6dd3ff 0%, #8a7cff 100%);
 }
 
 .table-light thead th {
-  background: linear-gradient(90deg, #ecf0f1 0%, #bdc3c7 100%);
-  border-bottom: 3px solid #667eea;
+  background: linear-gradient(90deg, #f0f9ff 0%, #eef2ff 100%);
+  border-bottom: 3px solid #4fb3ff;
   font-weight: 700;
-  color: #2c3e50;
+  color: #0b2545;
   text-transform: uppercase;
-  font-size: 0.85rem;
-  letter-spacing: 1px;
+  font-size: 0.88rem;
+  letter-spacing: 0.8px;
   padding: 1rem 0.75rem;
 }
 
@@ -250,7 +268,7 @@ p {
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #2e86ff 0%, #6b49ff 100%);
   color: white;
 }
 

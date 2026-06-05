@@ -68,6 +68,11 @@ function App() {
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark navbar-custom">
           <div className="container-fluid">
             <Link className="navbar-brand d-flex align-items-center" to="/">
+              <img
+                src="/octofitapp-small.svg"
+                alt="OctoFit Small Logo"
+                className="navbar-small-logo me-3"
+              />
               <img 
                 src="/octofit-logo.svg" 
                 alt="OctoFit Logo" 
