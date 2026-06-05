@@ -26,10 +26,13 @@ class LeaderboardViewSet(viewsets.ModelViewSet):
 
 @api_view(['GET'])
 def api_root(request, format=None):
+    base = request.build_absolute_uri('/')
+    # Ensure api prefix is used
+    api_base = base.rstrip('/') + '/api'
     return Response({
-        'users': '/users/',
-        'teams': '/teams/',
-        'activities': '/activities/',
-        'workouts': '/workouts/',
-        'leaderboard': '/leaderboard/',
+        'users': f"{api_base}/users/",
+        'teams': f"{api_base}/teams/",
+        'activities': f"{api_base}/activities/",
+        'workouts': f"{api_base}/workouts/",
+        'leaderboard': f"{api_base}/leaderboard/",
     })

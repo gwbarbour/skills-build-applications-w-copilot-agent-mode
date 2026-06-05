@@ -28,12 +28,21 @@ DEBUG = True
 
 
 # Configure ALLOWED_HOSTS from environment variable
-CODESPACE_NAME = os.getenv('CODESPACE_NAME', 'localhost')
+CODESPACE_NAME = os.getenv('CODESPACE_NAME', '')
+# Construct codespace host dynamically (do not hard-code the name)
+if CODESPACE_NAME:
+    CODESPACE_HOST = f"{CODESPACE_NAME}-8000.app.github.dev"
+else:
+    CODESPACE_HOST = 'localhost'
+
+# Allow localhost and the Codespace host so backend works both locally and
+# when accessed via the Codespace URL.
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
-    f'{CODESPACE_NAME}-8000.app.github.dev',
+    CODESPACE_HOST,
     CODESPACE_NAME,
+    '0.0.0.0',
 ]
 
 
