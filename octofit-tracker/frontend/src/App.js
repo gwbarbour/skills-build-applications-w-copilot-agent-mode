@@ -6,6 +6,7 @@ import Leaderboard from './components/Leaderboard';
 import Teams from './components/Teams';
 import Users from './components/Users';
 import Workouts from './components/Workouts';
+import { getApiBaseUrl } from './utils/api';
 
 function Home() {
   return (
@@ -143,6 +144,7 @@ function App() {
         {/* Footer */}
         <footer className="bg-dark text-white text-center py-4 mt-5">
           <p>&copy; 2026 OctoFit Tracker. All rights reserved.</p>
+          <p className="small text-muted mb-0">API base: {getApiBaseUrl()}</p>
         </footer>
       </div>
     </Router>
