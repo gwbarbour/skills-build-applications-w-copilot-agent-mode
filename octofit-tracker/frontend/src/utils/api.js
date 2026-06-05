@@ -2,9 +2,12 @@
 
 export const getApiBaseUrl = () => {
   // Use the GitHub Codespace hostname if available
-  const codespaceName = process.env.REACT_APP_CODESPACE_NAME || process.env.CODESPACE_NAME;
+  let codespaceName = process.env.REACT_APP_CODESPACE_NAME || process.env.CODESPACE_NAME;
 
   if (codespaceName) {
+    // strip any trailing -<port> (e.g. -3000) from the variable
+    codespaceName = codespaceName.replace(/-\d+$/, '');
+    // ensure we always point to port 8000
     return `https://${codespaceName}-8000.app.github.dev/api`;
   }
 
@@ -13,7 +16,12 @@ export const getApiBaseUrl = () => {
   try {
     if (typeof window !== 'undefined' && window.location && window.location.hostname.endsWith('.app.github.dev')) {
       const host = window.location.hostname; // e.g. my-codespace-3000.app.github.dev
-      // Replace -3000 with -8000 if present; otherwise replace the first -<port> segment
+      const m = host.match(/^(.+?)-\d+\.app\.github\.dev$/);
+      if (m) {
+        const name = m[1];
+        return `https://${name}-8000.app.github.dev/api`;
+      }
+      // fallback: replace any trailing -<port>.app.github.dev
       const replaced = host.replace(/-\d+\.app\.github\.dev$/, '-8000.app.github.dev');
       return `https://${replaced}/api`;
     }
