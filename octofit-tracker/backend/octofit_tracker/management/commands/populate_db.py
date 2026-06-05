@@ -1,61 +1,56 @@
 from django.core.management.base import BaseCommand
-from django.contrib.auth import get_user_model
-from django.db import connection
-from djongo import models
-
-
-
+from datetime import datetime
 from pymongo import MongoClient
 
+
 class Command(BaseCommand):
-    help = 'Populate the octofit_db database with test data'
+    help = "Populate DB using PyMongo with integer ids (compatible with Djongo/Django ORM reads)"
 
     def handle(self, *args, **options):
-        # Connect to MongoDB directly for index creation
         client = MongoClient('localhost', 27017)
         db = client['octofit_db']
 
-        # Drop collections if they exist
-        db.users.drop()
-        db.teams.drop()
-        db.activities.drop()
-        db.leaderboard.drop()
-        db.workouts.drop()
+        # Drop collections we will recreate
+        for name in ['octofit_tracker_user', 'octofit_tracker_team', 'octofit_tracker_activity', 'octofit_tracker_workout', 'octofit_tracker_leaderboard', 'octofit_tracker_team_members', 'octofit_tracker_workout_suggested_for']:
+            if name in db.list_collection_names():
+                db.drop_collection(name)
 
-        # Create unique index on email for users
-        db.users.create_index([('email', 1)], unique=True)
+        now = datetime.utcnow()
 
-        # Sample data
         users = [
-            {"name": "Superman", "email": "superman@dc.com", "team": "DC"},
-            {"name": "Batman", "email": "batman@dc.com", "team": "DC"},
-            {"name": "Wonder Woman", "email": "wonderwoman@dc.com", "team": "DC"},
-            {"name": "Iron Man", "email": "ironman@marvel.com", "team": "Marvel"},
-            {"name": "Captain America", "email": "cap@marvel.com", "team": "Marvel"},
-            {"name": "Black Widow", "email": "widow@marvel.com", "team": "Marvel"},
+            {'id': 1, 'username': 'Superman', 'email': 'superman@dc.com', 'date_joined': now},
+            {'id': 2, 'username': 'Batman', 'email': 'batman@dc.com', 'date_joined': now},
+            {'id': 3, 'username': 'Wonder Woman', 'email': 'wonderwoman@dc.com', 'date_joined': now},
+            {'id': 4, 'username': 'Iron Man', 'email': 'ironman@marvel.com', 'date_joined': now},
+            {'id': 5, 'username': 'Captain America', 'email': 'cap@marvel.com', 'date_joined': now},
+            {'id': 6, 'username': 'Black Widow', 'email': 'widow@marvel.com', 'date_joined': now},
         ]
+
         teams = [
-            {"name": "Marvel", "members": ["Iron Man", "Captain America", "Black Widow"]},
-            {"name": "DC", "members": ["Superman", "Batman", "Wonder Woman"]},
+            {'id': 1, 'name': 'Marvel', 'created_at': now},
+            {'id': 2, 'name': 'DC', 'created_at': now},
         ]
+
         activities = [
-            {"user": "Superman", "activity": "Flight", "duration": 60},
-            {"user": "Batman", "activity": "Martial Arts", "duration": 45},
-            {"user": "Iron Man", "activity": "Suit Training", "duration": 50},
+            {'id': 1, 'user_id': 1, 'type': 'Flight', 'duration': 60, 'date': now},
+            {'id': 2, 'user_id': 2, 'type': 'Martial Arts', 'duration': 45, 'date': now},
+            {'id': 3, 'user_id': 4, 'type': 'Suit Training', 'duration': 50, 'date': now},
         ]
-        leaderboard = [
-            {"team": "Marvel", "points": 150},
-            {"team": "DC", "points": 140},
-        ]
+
         workouts = [
-            {"name": "Strength Training", "difficulty": "Medium"},
-            {"name": "Cardio", "difficulty": "Easy"},
+            {'id': 1, 'name': 'Strength Training', 'description': 'Full body strength', 'difficulty': 'Medium'},
+            {'id': 2, 'name': 'Cardio', 'description': 'Endurance work', 'difficulty': 'Easy'},
         ]
 
-        db.users.insert_many(users)
-        db.teams.insert_many(teams)
-        db.activities.insert_many(activities)
-        db.leaderboard.insert_many(leaderboard)
-        db.workouts.insert_many(workouts)
+        leaderboard = [
+            {'id': 1, 'team_id': 1, 'score': 150},
+            {'id': 2, 'team_id': 2, 'score': 140},
+        ]
 
-        self.stdout.write(self.style.SUCCESS('octofit_db database populated with test data.'))
+        db['octofit_tracker_user'].insert_many(users)
+        db['octofit_tracker_team'].insert_many(teams)
+        db['octofit_tracker_activity'].insert_many(activities)
+        db['octofit_tracker_workout'].insert_many(workouts)
+        db['octofit_tracker_leaderboard'].insert_many(leaderboard)
+
+        self.stdout.write(self.style.SUCCESS('octofit_db populated with integer-id documents.'))
