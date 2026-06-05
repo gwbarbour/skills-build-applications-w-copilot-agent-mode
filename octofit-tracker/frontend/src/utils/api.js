@@ -2,10 +2,23 @@
 
 export const getApiBaseUrl = () => {
   // Use the GitHub Codespace hostname if available
-  const codespaceName = process.env.REACT_APP_CODESPACE_NAME;
-  
+  const codespaceName = process.env.REACT_APP_CODESPACE_NAME || process.env.CODESPACE_NAME;
+
   if (codespaceName) {
     return `https://${codespaceName}-8000.app.github.dev/api`;
+  }
+
+  // If running inside a Codespace web preview, derive the Codespace name from
+  // the current hostname (e.g. <name>-3000.app.github.dev) and switch port to 8000.
+  try {
+    if (typeof window !== 'undefined' && window.location && window.location.hostname.endsWith('.app.github.dev')) {
+      const host = window.location.hostname; // e.g. my-codespace-3000.app.github.dev
+      // Replace -3000 with -8000 if present; otherwise replace the first -<port> segment
+      const replaced = host.replace(/-\d+\.app\.github\.dev$/, '-8000.app.github.dev');
+      return `https://${replaced}/api`;
+    }
+  } catch (e) {
+    // ignore and fall back to localhost
   }
   
   // Fallback to localhost for local development
